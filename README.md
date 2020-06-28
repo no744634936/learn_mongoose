@@ -1,33 +1,36 @@
-mongoose 模块化  db文件夹里的文件连接数据库然后定义和表的映射关系
-然后再model文件夹里使用 这些关系来对数据表进行CRUD
-
-跟sequelize的模块化很像。
+1, 查看  table_relation.pdf  文件
 
 
------------------
-
-查看 src/db 文件夹中的三个文件
-虽然 users.js 和 news.js 都调用了 db.js 但是，因为mongoose已经帮我们
-在底层进行过优化，所以不会重复连接数据库。
+2,mongodb 中聚合管道的使用，复杂查询
+  查看aggrate.pdf 文件
 
 
-查看 src/model 文件夹中的两个文件
+-------------------------------------------------------
+在mongoose 中使用 aggrate
+
+1，建立orders表
+插入数据
+[
+    {"order_id":"1","uid":10,"trade_no":"111","all_price":100,"all_num":2},
+    {"order_id":"2","uid":7,"trade_no":"222","all_price":90,"all_num":2},
+    {"order_id":"3","uid":9,"trade_no":"333","all_price":20,"all_num":6}
+]
 
 
+2，建立order_items 表
+插入数据
+[
+    {"order_id":"1","title":"商品鼠标 1","price":50,"num":1},
+    {"order_id":"1","title":"商品键盘 2","price":50,"num":1},
+    {"order_id":"1","title":"商品键盘 3","price":0,"num":1},
+    {"order_id":"2","title":"牛奶","price":50,"num":1},
+    {"order_id":"2","title":"酸奶","price":40,"num":1},
+    {"order_id":"3","title":"矿泉水","price":2,"num":5},
+    {"order_id":"3","title":"毛巾","price":10,"num":1}
+]
 
-ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
 
-1、预定义模式修饰符，trim， lowercase, uppercase ...
-2，自定义模式修饰符 getter setter  对数据进行格式化。
-//配置schema的时候写，但是可以在业务逻辑中实现这些功能。
-//感觉不太常用，所以，大概看看mongoose文档吧。
-
-----------------------------------------------------------------
-mongoose 设置索引，查看文档。
+3,查询orders里每一个订单对应的商品
 
 
-----------------------------------------------------------------
-数据校验　查看文档
-
-1,系统提供的校验函数
-2，自定义的校验函数
+db.order_items.aggregate( [ { $group: {_id: "$order_id", total: {$sum: 1}} } ] )
