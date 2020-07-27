@@ -12,6 +12,4 @@ npm install mongoose --save
 ---------------------------------------------------------
 mongoose　里面各个方法的返回值
 
-find 
-findOne
-这两个如果没有记录就会返回null，有记录就会返回object
+find ，findOne 用这两个方法查找，如果没有记录就会返回null，有记录就会返回object
