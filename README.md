@@ -16,3 +16,20 @@ find ，findOne 用这两个方法查找，如果没有记录就会返回null，
 
 
 updateOne 不会返回更新后的记录。而是返回 { n: 1, nModified: 1, ok: 1 }
+
+findByIdAndUpdate 可以返回更新后的记录，注意，一定要带{new:true} 这个参数。否则返回的就是更新前的参数
+    chargeCredits=async(userId,credits)=>{
+    
+        let response=await Users.findByIdAndUpdate(
+        
+            {_id:userId},
+            
+            {credits:credits},
+            
+            {new:true}
+            
+        )
+        
+        return response;
+        
+    }
