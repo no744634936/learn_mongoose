@@ -12,4 +12,7 @@ npm install mongoose --save
 ---------------------------------------------------------
 mongoose　里面各个方法的返回值
 
-find ，findOne 用这两个方法查找，如果没有记录就会返回null，有记录就会返回object
+find ，findOne 用这两个方法查找，如果没有记录就会返回null，有记录就会返回记录的object
+
+
+updateOne 不会返回更新后的记录。而是返回 { n: 1, nModified: 1, ok: 1 }
