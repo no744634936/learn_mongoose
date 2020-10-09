@@ -33,3 +33,16 @@ findByIdAndUpdate 可以返回更新后的记录，注意，一定要带{new:tru
         return response;
         
     }
+
+
+
+-----------------------------------------------------------
+{ new : true } will return the modified document rather than the original.
+updateOne doesn't have this option. If you need response as updated document use findOneAndUpdate.
+Below are the mongoosejs function where you can use { new : true }
+
+findByIdAndUpdate()
+findOneAndUpdate()
+findOneAndDelete()
+findOneAndRemove()
+findOneAndReplace()
