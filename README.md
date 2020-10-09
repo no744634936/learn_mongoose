@@ -42,7 +42,11 @@ updateOne doesn't have this option. If you need response as updated document use
 Below are the mongoosejs function where you can use { new : true }
 
 findByIdAndUpdate()
+
 findOneAndUpdate()
+
 findOneAndDelete()
+
 findOneAndRemove()
+
 findOneAndReplace()
